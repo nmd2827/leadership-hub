@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Leadership Hub — Kennedy Eagles Band</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0c2242;
+        --navy-deep: #081831;
+        --navy-card: #10294e;
+        --gold: #f0b41d;
+        --gold-deep: #c08f0e;
+        --bg: #f4f6f9;
+        --surface: #ffffff;
+        --surface-2: #eef1f6;
+        --ink: #16233a;
+        --ink-soft: #48586f;
+        --line: #d7dee9;
+        --danger: #c22f2f;
+        --ok: #1e7d46;
+        --radius: 14px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #060f20;
+          --surface: #0d2142;
+          --surface-2: #123058;
+          --ink: #eef2f9;
+          --ink-soft: #a9b8cf;
+          --line: #27436e;
+          --gold-deep: #f0b41d;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.5;
+      }
+      button, [role="button"], select, summary,
+      input:not([type="checkbox"], [type="radio"]) { min-height: 2.75rem; }
+      a { color: var(--gold-deep); }
+      .wrap { max-width: 1060px; margin: 0 auto; padding: 0 16px 64px; }
+
+      /* ---------- Masthead ---------- */
+      .masthead {
+        background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+        color: #f4f7fc;
+        border-bottom: 5px solid var(--gold);
+      }
+      .masthead .wrap { padding: 30px 16px 26px; }
+      .masthead .school {
+        font-family: Oswald, sans-serif;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        font-size: .8rem;
+        color: var(--gold);
+        margin: 0 0 6px;
+      }
+      .masthead h1 {
+        font-family: Oswald, sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .02em;
+        font-size: clamp(2rem, 6vw, 3.1rem);
+        line-height: 1.05;
+        margin: 0 0 10px;
+      }
+      .masthead p.lede { margin: 0; max-width: 56ch; color: #c9d6ea; font-size: 1.05rem; }
+      .masthead .quicklinks { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        min-height: 44px; padding: 10px 18px;
+        border-radius: 10px; border: 2px solid transparent;
+        font-family: Oswald, sans-serif; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+        font-size: .9rem; text-decoration: none; cursor: pointer;
+        background: var(--surface-2); color: var(--ink);
+      }
+      .btn-gold { background: var(--gold); color: #1a1405; }
+      .btn-gold:hover { background: #ffc82e; }
+      .btn-ghost { background: transparent; border-color: #47608a; color: #e8eefb; }
+      .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+      .btn-navy { background: var(--navy); color: #fff; }
+      .btn-navy:hover { background: var(--navy-card); }
+      .btn-outline { background: transparent; border-color: var(--line); color: var(--ink); }
+      .btn-outline:hover { border-color: var(--gold-deep); }
+      .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+      /* ---------- Sections ---------- */
+      section { margin-top: 38px; }
+      .sec-head { display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid var(--gold); padding-bottom: 8px; margin-bottom: 18px; }
+      .sec-head h2 {
+        font-family: Oswald, sans-serif; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .04em; font-size: 1.45rem; margin: 0;
+      }
+      .sec-head .tag { color: var(--ink-soft); font-size: .95rem; }
+
+      /* ---------- On deck ---------- */
+      .ondeck { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 22px; }
+      @media (min-width: 720px) { .ondeck { grid-template-columns: repeat(3, 1fr); } }
+      .od-card {
+        background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--gold);
+        border-radius: var(--radius); padding: 16px 18px;
+      }
+      .od-card .when { font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .06em; color: var(--gold-deep); font-size: .85rem; }
+      .od-card h3 { margin: 4px 0 6px; font-size: 1.15rem; }
+      .od-card p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+
+      /* ---------- People ---------- */
+      .dm-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .dm-grid { grid-template-columns: repeat(3, 1fr); } }
+      .person {
+        background: var(--navy); color: #eef2f9; border-radius: var(--radius);
+        padding: 22px 20px; position: relative; overflow: hidden;
+      }
+      .person::after {
+        content: ""; position: absolute; right: -28px; top: -28px; width: 96px; height: 96px;
+        border: 10px solid rgba(240, 180, 29, .25); border-radius: 50%;
+      }
+      .person .mono {
+        width: 54px; height: 54px; border-radius: 50%;
+        background: var(--gold); color: #1a1405;
+        font-family: Oswald, sans-serif; font-weight: 700; font-size: 1.25rem;
+        display: flex; align-items: center; justify-content: center; margin-bottom: 12px;
+      }
+      .person h3 { margin: 0 0 2px; font-size: 1.3rem; font-family: Oswald, sans-serif; font-weight: 600; letter-spacing: .02em; }
+      .person .role { color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; margin: 0 0 10px; }
+      .person p { margin: 0; color: #c9d6ea; font-size: .95rem; }
+
+      .staff-list { display: grid; gap: 10px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .staff-list { grid-template-columns: 1fr 1fr; } }
+      .staff-row {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+        padding: 12px 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+      }
+      .staff-row .name { font-weight: 700; }
+      .staff-row .srole { color: var(--gold-deep); font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: .82rem; text-align: right; white-space: nowrap; }
+
+      /* ---------- Dates & rhythm ---------- */
+      .two-col { display: grid; gap: 22px; grid-template-columns: 1fr; }
+      @media (min-width: 860px) { .two-col { grid-template-columns: 1.25fr 1fr; } }
+      .date-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+      .date-list li {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+        padding: 12px 16px; display: flex; gap: 16px; align-items: flex-start;
+      }
+      .date-badge {
+        flex: 0 0 auto; text-align: center; background: var(--navy); color: #fff;
+        border-radius: 8px; padding: 6px 10px; min-width: 62px;
+      }
+      .date-badge .d { font-family: Oswald, sans-serif; font-size: 1.3rem; font-weight: 700; line-height: 1; display: block; }
+      .date-badge .m { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); }
+      .date-list h3 { margin: 0 0 2px; font-size: 1.05rem; }
+      .date-list p { margin: 0; color: var(--ink-soft); font-size: .93rem; }
+      .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+      .panel h3 { font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .04em; margin: 0 0 10px; font-size: 1.05rem; }
+      .panel ul { margin: 0; padding-left: 20px; }
+      .panel li { margin-bottom: 6px; }
+      .panel p { color: var(--ink-soft); }
+
+      /* ---------- Friday meetings ---------- */
+      .howto {
+        background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 16px 20px; margin-bottom: 18px; font-size: .97rem;
+      }
+      .howto strong { color: var(--gold-deep); }
+      .meeting {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        margin-bottom: 20px; overflow: hidden;
+      }
+      .meeting > summary {
+        list-style: none; cursor: pointer; padding: 16px 20px; min-height: 44px;
+        display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+        background: var(--navy); color: #fff;
+      }
+      .meeting > summary::-webkit-details-marker { display: none; }
+      .meeting > summary .mdate { font-family: Oswald, sans-serif; font-size: 1.2rem; font-weight: 600; letter-spacing: .02em; }
+      .meeting > summary .pill {
+        background: var(--gold); color: #1a1405; border-radius: 999px; padding: 2px 12px;
+        font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      }
+      .meeting > summary .pill.past { background: #47608a; color: #dbe5f5; }
+      .meeting > summary .hint { color: #a9b8cf; font-size: .88rem; margin-left: auto; }
+      .meeting-body { padding: 18px 20px 22px; display: grid; gap: 16px; }
+      .field label { display: block; font-weight: 700; margin-bottom: 6px; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: .85rem; }
+      .field input[type="text"], .field textarea {
+        width: 100%; border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 13px;
+        font: inherit; background: var(--bg); color: var(--ink);
+      }
+      .field textarea { min-height: 84px; resize: vertical; }
+      .field textarea.tall { min-height: 150px; }
+      .field .note { color: var(--ink-soft); font-size: .88rem; margin-top: 5px; }
+      .rec-box { border: 1.5px dashed var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 12px; }
+      .rec-box h4 { margin: 0; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: .95rem; }
+      .rec-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .btn-rec { background: var(--danger); color: #fff; }
+      .btn-rec.recording { background: var(--ink); }
+      .rec-status { font-size: .92rem; color: var(--ink-soft); }
+      .rec-status .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--danger); margin-right: 6px; animation: pulse 1s infinite; vertical-align: middle; }
+      @keyframes pulse { 50% { opacity: .25; } }
+      @media (prefers-reduced-motion: reduce) { .rec-status .dot { animation: none; } }
+      .rec-box audio { width: 100%; }
+      .upload-label {
+        display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px;
+        border-radius: 10px; border: 2px solid var(--line); cursor: pointer;
+        font-family: Oswald, sans-serif; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; font-size: .9rem;
+      }
+      .upload-label:hover { border-color: var(--gold-deep); }
+      .upload-label input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+      .dl-link { display: none; }
+      .dl-link.show { display: inline-flex; }
+
+      /* ---------- Resources / share ---------- */
+      .res-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .res-grid { grid-template-columns: repeat(3, 1fr); } }
+      .res-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+      .res-card h3 { margin: 0 0 6px; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .03em; font-size: 1.05rem; }
+      .res-card p { margin: 0 0 12px; color: var(--ink-soft); font-size: .95rem; }
+      .share-box {
+        background: var(--navy); color: #eef2f9; border-radius: var(--radius); padding: 22px;
+        display: grid; gap: 14px;
+      }
+      .share-box h3 { margin: 0; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .04em; color: var(--gold); }
+      .share-box p { margin: 0; color: #c9d6ea; }
+      .share-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .share-url {
+        flex: 1 1 260px; background: var(--navy-deep); border: 1px solid #47608a; border-radius: 10px;
+        padding: 12px 14px; font-family: ui-monospace, Menlo, monospace; font-size: .92rem; word-break: break-all; color: #fff;
+      }
+      footer { margin-top: 44px; color: var(--ink-soft); font-size: .9rem; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="wrap">
+        <p class="school">John F. Kennedy High School · Waterbury, CT</p>
+        <h1>Leadership Hub</h1>
+        <p class="lede">Home base for the Kennedy Eagles Band's student leaders and staff — who's leading, what's coming up, and the Friday meeting log for the 2026 season.</p>
+        <div class="quicklinks">
+          <a class="btn btn-gold" href="#friday-meetings">Friday Meetings</a>
+          <a class="btn btn-ghost" href="#agenda">Agenda</a>
+          <a class="btn btn-ghost" href="#share">Share This Hub</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <!-- On deck -->
+      <div class="ondeck" aria-label="Coming up next">
+        <div class="od-card">
+          <div class="when">Sat · Nov 21</div>
+          <h3>CMEA Southern Region Auditions</h3>
+          <p>Foran HS, Milford · 8:00 AM–4:00 PM.</p>
+        </div>
+        <div class="od-card">
+          <div class="when">Wed · Nov 25</div>
+          <h3>Pep Rally</h3>
+          <p>During the school day, full band.</p>
+        </div>
+        <div class="od-card">
+          <div class="when">Thu · Dec 17</div>
+          <h3>Winter Concert</h3>
+          <p>Kennedy HS · Report 6:00 PM, concert 7:00 PM. Concert attire: white dress shirt, black pants, black dress shoes.</p>
+        </div>
+      </div>
+
+      <!-- Drum majors -->
+      <section id="drum-majors">
+        <div class="sec-head"><h2>Drum Majors</h2><span class="tag">2026 season</span></div>
+        <div class="dm-grid">
+          <article class="person">
+            <div class="mono" aria-hidden="true">DP</div>
+            <h3>Dionna Person</h3>
+            <p class="role">Drum Major</p>
+            <p>On the podium for the Marching Eagles' 2026 season.</p>
+          </article>
+          <article class="person">
+            <div class="mono" aria-hidden="true">AS</div>
+            <h3>Asher David-Sims</h3>
+            <p class="role">Drum Major · Senior</p>
+            <p>Senior drum major and tuba player — the first junior from JFK to earn a CMEA Southern Regionals tuba seat.</p>
+          </article>
+          <article class="person">
+            <div class="mono" aria-hidden="true">AC</div>
+            <h3>Adriana Cappabianca-Ferron</h3>
+            <p class="role">Drum Major · Junior</p>
+            <p>Junior drum major rounding out the 2026 podium team.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Staff -->
+      <section id="staff">
+        <div class="sec-head"><h2>Staff &amp; Captains' Bench</h2><span class="tag">Fall 2026</span></div>
+        <div class="staff-list">
+          <div class="staff-row"><span class="name">Nick Drabik</span><span class="srole">Director</span></div>
+          <div class="staff-row"><span class="name">Julia Catricala</span><span class="srole">Assistant Director</span></div>
+          <div class="staff-row"><span class="name">Brian Torres</span><span class="srole">Visual</span></div>
+          <div class="staff-row"><span class="name">Evan Cooper</span><span class="srole">Visual</span></div>
+          <div class="staff-row"><span class="name">Dainah Person</span><span class="srole">Color Guard</span></div>
+          <div class="staff-row"><span class="name">John Wassersug</span><span class="srole">Drumline / Sound</span></div>
+          <div class="staff-row"><span class="name">Jordan Tulley</span><span class="srole">Front Ensemble</span></div>
+          <div class="staff-row"><span class="name">Andy Maust</span><span class="srole">Woodwind</span></div>
+          <div class="staff-row"><span class="name">Kurt Eckhardt</span><span class="srole">Brass</span></div>
+          <div class="staff-row"><span class="name">Devon</span><span class="srole">Assistant Woodwind Tech</span></div>
+        </div>
+      </section>
+
+      <!-- Agenda -->
+      <section id="agenda">
+        <div class="sec-head"><h2>Agenda</h2><span class="tag">Verified dates — band handout &amp; district calendar</span></div>
+        <div class="two-col">
+          <ul class="date-list">
+            <li>
+              <div class="date-badge"><span class="d">20</span><span class="m">Nov</span></div>
+              <div><h3>Friday Leadership Meeting</h3><p>Friday · See the <a href="#friday-meetings">Friday Meetings log</a> below for this week's entry.</p>
+              <h3 style="margin-top:8px;">Oliver — Evening Performance</h3><p>Friday · 7:00 PM.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">21</span><span class="m">Nov</span></div>
+              <div><h3>CMEA Southern Region Auditions</h3><p>Saturday · Foran HS, Milford · 8:00 AM–4:00 PM.</p>
+              <h3 style="margin-top:8px;">Oliver — Matinee &amp; Evening</h3><p>Saturday · 1:00 PM and 7:00 PM performances.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">22</span><span class="m">Nov</span></div>
+              <div><h3>Oliver — Closing Performance</h3><p>Sunday · 1:00 PM closing.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">25</span><span class="m">Nov</span></div>
+              <div><h3>Pep Rally</h3><p>Wednesday · During the school day.</p>
+              <h3 style="margin-top:8px;">Full-Band Practice</h3><p>Wednesday · 2:00–5:00 PM.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">27</span><span class="m">Nov</span></div>
+              <div><h3>Friday Leadership Meeting</h3><p>Friday · See the <a href="#friday-meetings">Friday Meetings log</a> below for this week's entry.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">2</span><span class="m">Dec</span></div>
+              <div><h3>Full-Band Practice</h3><p>Wednesday · 2:00–5:00 PM.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">4</span><span class="m">Dec</span></div>
+              <div><h3>Friday Leadership Meeting</h3><p>Friday · See the <a href="#friday-meetings">Friday Meetings log</a> below for this week's entry.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">9</span><span class="m">Dec</span></div>
+              <div><h3>Full-Band Practice</h3><p>Wednesday · 2:00–5:00 PM.</p>
+              <h3 style="margin-top:8px;">Parent Conferences — High School</h3><p>Wednesday · 5:00–7:00 PM · Early dismissal.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">11</span><span class="m">Dec</span></div>
+              <div><h3>Friday Leadership Meeting</h3><p>Friday · See the <a href="#friday-meetings">Friday Meetings log</a> below for this week's entry.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">16</span><span class="m">Dec</span></div>
+              <div><h3>Full-Band Practice</h3><p>Wednesday · 2:00–5:00 PM.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">17</span><span class="m">Dec</span></div>
+              <div><h3>Winter Concert</h3><p>Thursday · Kennedy HS · Report 6:00 PM, concert 7:00 PM · Concert attire: white dress shirt, black pants, black dress shoes.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">18</span><span class="m">Dec</span></div>
+              <div><h3>Friday Leadership Meeting</h3><p>Friday · See the <a href="#friday-meetings">Friday Meetings log</a> below for this week's entry.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">20</span><span class="m">Dec</span></div>
+              <div><h3>Full District Performance</h3><p>Sunday · Full band, in full band uniform.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">23</span><span class="m">Dec</span></div>
+              <div><h3>Early Dismissal — Winter Recess Begins</h3><p>Wednesday · Per the district calendar.</p></div>
+            </li>
+            <li>
+              <div class="date-badge"><span class="d">24–31</span><span class="m">Dec</span></div>
+              <div><h3>Winter Recess</h3><p>No school · Per the district calendar.</p></div>
+            </li>
+          </ul>
+          <div class="panel">
+            <h3>Sources &amp; Updates</h3>
+            <p>Every date here comes from one of two verified sources — nothing is added from memory or guesswork:</p>
+            <ul>
+              <li><a href="https://waterburyk12ctus.finalsite.com/uploaded/School_Calendars/_2026-27SchoolCalendarBOEapproved12-18-2025.pdf" target="_blank" rel="noopener">Waterbury Public Schools 2026–27 District Calendar (BOE-approved PDF)</a> — parent conferences, early dismissals, Winter Recess.</li>
+              <li><a href="https://nmd2827.github.io/digital-band-binder/" target="_blank" rel="noopener">Band upcoming-dates handout (in the Digital Band Binder)</a> — Wednesday practices, pep rally, Winter Concert, district performance.</li>
+            </ul>
+            <p>This page is a static snapshot, not a live feed — it does not sync with Outlook or any calendar app. Mr. Drabik updates the agenda by hand when dates change, so if something here disagrees with the district calendar PDF, the district calendar wins.</p>
+            <h3 style="margin-top:18px;">Weekly Rhythm</h3>
+            <ul>
+              <li><strong>Full-band practice:</strong> every Wednesday, 2:00–5:00 PM (Nov 25, Dec 2, Dec 9, Dec 16).</li>
+              <li><strong>Leadership:</strong> Friday meetings — one log entry per Friday, below.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Friday meetings -->
+      <section id="friday-meetings">
+        <div class="sec-head"><h2>Friday Meetings</h2><span class="tag">One log entry per Friday</span></div>
+        <div class="howto">
+          <strong>How recording works:</strong> tap <em>Record</em> right here in the browser to capture the meeting, or upload an audio file you already have. When you stop, the audio plays back here and a <em>Download recording</em> button appears. <strong>Recordings live on this device only</strong> — nothing is uploaded or saved by this page — so download the file and send it to Rocky for a full transcription, then paste the finished transcript into the meeting's transcript box. Where the browser supports it, the <em>Dictate</em> button also transcribes live into that box as you talk.
+        </div>
+        <div id="meeting-list"></div>
+      </section>
+
+      <!-- Resources -->
+      <section id="resources">
+        <div class="sec-head"><h2>Leader Resources</h2><span class="tag">The other Kennedy hubs</span></div>
+        <div class="res-grid">
+          <div class="res-card">
+            <h3>Practice Hub</h3>
+            <p>Playable parts, scales, and practice tracks for every piece in the folder.</p>
+            <a class="btn btn-navy" href="https://is.gd/khs_practice_hub" target="_blank" rel="noopener">Open Practice Hub</a>
+          </div>
+          <div class="res-card">
+            <h3>Digital Band Binder</h3>
+            <p>Every part, score, and handout — the full Kennedy band library.</p>
+            <a class="btn btn-navy" href="https://nmd2827.github.io/digital-band-binder/" target="_blank" rel="noopener">Open the Binder</a>
+          </div>
+          <div class="res-card">
+            <h3>Grants Hub</h3>
+            <p>Band grants tracked by deadline — funding for next season starts here.</p>
+            <a class="btn btn-navy" href="https://nmd2827.github.io/grants-hub/" target="_blank" rel="noopener">Open Grants Hub</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Share -->
+      <section id="share">
+        <div class="sec-head"><h2>Share This Hub</h2><span class="tag">Published on GitHub, like the other hubs</span></div>
+        <div class="share-box">
+          <h3>Leadership Hub on GitHub Pages</h3>
+          <p>Send leaders and staff the live link — it works on any phone, no sign-in needed.</p>
+          <div class="share-row">
+            <span class="share-url" id="live-url">https://nmd2827.github.io/leadership-hub/</span>
+            <a class="btn btn-gold" href="https://nmd2827.github.io/leadership-hub/" target="_blank" rel="noopener">Open Live Site</a>
+          </div>
+          <div class="share-row">
+            <span class="share-url">https://github.com/nmd2827/leadership-hub</span>
+            <a class="btn btn-ghost" href="https://github.com/nmd2827/leadership-hub" target="_blank" rel="noopener">View Source Repo</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>Kennedy Eagles Band · Leadership Hub · 2026 Season</footer>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- Meeting data: one entry per Friday ---------- */
+        var MEETINGS = [
+          { id: "m-2026-11-20", dateLabel: "Friday, November 20, 2026", pill: "Today", open: true },
+          { id: "m-2026-11-27", dateLabel: "Friday, November 27, 2026", pill: "Upcoming", open: false },
+          { id: "m-2026-12-04", dateLabel: "Friday, December 4, 2026", pill: "Upcoming", open: false },
+          { id: "m-2026-12-11", dateLabel: "Friday, December 11, 2026", pill: "Upcoming", open: false },
+          { id: "m-2026-12-18", dateLabel: "Friday, December 18, 2026", pill: "Upcoming", open: false }
+        ];
+        var ATTENDEE_PLACEHOLDER = "e.g. Dionna Person, Asher David-Sims, Adriana Cappabianca-Ferron, Mr. Drabik";
+
+        var list = document.getElementById("meeting-list");
+
+        function fieldHTML(m, key, label, placeholder, tall) {
+          return '<div class="field">' +
+            '<label for="' + m.id + '-' + key + '">' + label + '</label>' +
+            '<textarea id="' + m.id + '-' + key + '"' + (tall ? ' class="tall"' : '') +
+            ' placeholder="' + placeholder + '"></textarea></div>';
+        }
+
+        MEETINGS.forEach(function (m) {
+          var det = document.createElement("details");
+          det.className = "meeting";
+          det.id = m.id;
+          if (m.open) det.open = true;
+          det.innerHTML =
+            '<summary><span class="mdate">' + m.dateLabel + '</span>' +
+            '<span class="pill' + (m.pill === "Upcoming" ? ' past' : '') + '">' + m.pill + '</span>' +
+            '<span class="hint">Tap to open the log</span></summary>' +
+            '<div class="meeting-body">' +
+              '<div class="field"><label for="' + m.id + '-attendees">Attendees</label>' +
+              '<input type="text" id="' + m.id + '-attendees" placeholder="' + ATTENDEE_PLACEHOLDER + '" /></div>' +
+              fieldHTML(m, "agenda", "Agenda / Notes", "What did leadership cover? Announcements, section reports, issues from the floor…") +
+              fieldHTML(m, "decisions", "Decisions", "What was decided, and by whom…") +
+              fieldHTML(m, "actions", "Action Items", "Who owes what by when — one per line…") +
+              '<div class="rec-box">' +
+                '<h4>Meeting Audio</h4>' +
+                '<div class="rec-controls">' +
+                  '<button type="button" class="btn btn-rec rec-btn">● Record</button>' +
+                  '<label class="upload-label">Upload audio<input type="file" class="upload-input" accept="audio/*" /></label>' +
+                  '<a class="btn btn-outline dl-link" download>Download recording</a>' +
+                '</div>' +
+                '<p class="rec-status">No audio yet. Recordings are kept on this device only — download the file and send it to Rocky for a full transcription.</p>' +
+                '<audio class="player" controls hidden></audio>' +
+              '</div>' +
+              '<div class="field">' +
+                '<label for="' + m.id + '-transcript">Transcript</label>' +
+                '<div class="rec-controls" style="margin-bottom:10px;">' +
+                  '<button type="button" class="btn btn-navy dictate-btn">Dictate</button>' +
+                  '<span class="rec-status dictate-status"></span>' +
+                '</div>' +
+                '<textarea id="' + m.id + '-transcript" class="tall" placeholder="Dictate live with the button above (where the browser supports it), or paste the full transcript here once Rocky sends it back."></textarea>' +
+              '</div>' +
+            '</div>';
+          list.appendChild(det);
+        });
+
+        /* ---------- Recording (MediaRecorder) ---------- */
+        var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+
+        document.querySelectorAll(".meeting").forEach(function (det) {
+          var recBtn = det.querySelector(".rec-btn");
+          var status = det.querySelector(".rec-status");
+          var player = det.querySelector(".player");
+          var dl = det.querySelector(".dl-link");
+          var upload = det.querySelector(".upload-input");
+          var recorder = null, chunks = [], stream = null, currentURL = null;
+
+          function setAudio(url, filename) {
+            if (currentURL) URL.revokeObjectURL(currentURL);
+            currentURL = url;
+            player.src = url;
+            player.hidden = false;
+            dl.href = url;
+            dl.setAttribute("download", filename);
+            dl.classList.add("show");
+          }
+
+          if (!canRecord) {
+            recBtn.disabled = true;
+            status.textContent = "In-browser recording isn't supported in this browser — use Upload audio instead. Files stay on this device; send the audio to Rocky for a full transcription.";
+          }
+
+          recBtn.addEventListener("click", function () {
+            if (recorder && recorder.state === "recording") {
+              recorder.stop();
+              return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+              stream = s;
+              chunks = [];
+              recorder = new MediaRecorder(s);
+              recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+              recorder.onstop = function () {
+                var type = recorder.mimeType || "audio/webm";
+                var ext = type.indexOf("mp4") >= 0 ? "m4a" : (type.indexOf("ogg") >= 0 ? "ogg" : "webm");
+                var blob = new Blob(chunks, { type: type });
+                setAudio(URL.createObjectURL(blob), det.id + "-meeting." + ext);
+                status.textContent = "Recording ready — press play to check it, then download it and send it to Rocky for a full transcription.";
+                recBtn.textContent = "● Record";
+                recBtn.classList.remove("recording");
+                if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
+              };
+              recorder.start();
+              recBtn.textContent = "■ Stop";
+              recBtn.classList.add("recording");
+              status.innerHTML = '<span class="dot"></span>Recording… tap Stop when the meeting wraps up.';
+            }).catch(function () {
+              status.textContent = "Microphone access was blocked. Allow the mic for this page, or use Upload audio with a file recorded another way.";
+            });
+          });
+
+          upload.addEventListener("change", function () {
+            var f = upload.files && upload.files[0];
+            if (!f) return;
+            setAudio(URL.createObjectURL(f), f.name);
+            status.textContent = "Audio loaded: " + f.name + " — press play to check it, and send the file to Rocky for a full transcription.";
+          });
+
+          /* ---------- Live dictation (SpeechRecognition) ---------- */
+          var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+          var dBtn = det.querySelector(".dictate-btn");
+          var dStatus = det.querySelector(".dictate-status");
+          var box = det.querySelector('textarea[id$="-transcript"]');
+          var recog = null, listening = false;
+
+          if (!SR) {
+            dBtn.disabled = true;
+            dStatus.textContent = "Live dictation isn't supported in this browser — paste the transcript below instead.";
+          } else {
+            dBtn.addEventListener("click", function () {
+              if (listening) { recog.stop(); return; }
+              recog = new SR();
+              recog.continuous = true;
+              recog.interimResults = false;
+              recog.lang = "en-US";
+              recog.onresult = function (ev) {
+                for (var i = ev.resultIndex; i < ev.results.length; i++) {
+                  if (ev.results[i].isFinal) {
+                    var text = ev.results[i][0].transcript.trim();
+                    if (text) box.value += (box.value && !/\s$/.test(box.value) ? " " : "") + text + " ";
+                  }
+                }
+              };
+              recog.onend = function () {
+                listening = false;
+                dBtn.textContent = "Dictate";
+                dStatus.textContent = "";
+              };
+              recog.onerror = function () {
+                listening = false;
+                dBtn.textContent = "Dictate";
+                dStatus.textContent = "Dictation stopped — check mic access, or paste the transcript instead.";
+              };
+              recog.start();
+              listening = true;
+              dBtn.textContent = "■ Stop dictation";
+              dStatus.textContent = "Listening… speak and the words land in the transcript box.";
+            });
+          }
+        });
+
+      })();
+    </script>
+  </body>
+</html>
